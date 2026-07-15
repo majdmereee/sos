@@ -9,7 +9,6 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  # تم تعديل الإصدار هنا ليتوافق مع مكتبات جوجل
   flutter_accessibility_service: ^1.0.0
   pusher_channels_flutter: ^2.2.0
   http: ^1.2.1
