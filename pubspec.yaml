@@ -12,6 +12,7 @@ dependencies:
   flutter_accessibility_service: ^1.0.0
   pusher_channels_flutter: ^2.2.0
   http: ^1.2.1
+  shared_preferences: ^2.2.3
 
 dev_dependencies:
   flutter_test:
