@@ -26,7 +26,10 @@ jobs:
           flutter-version: '3.22.0'
           channel: 'stable'
 
-      # تم إرجاع المسار للمجلد الرئيسي مباشرة لإنهاء المشكلة
+      # هذا هو السطر السحري الذي سيولد مجلد الأندرويد تلقائياً على سيرفر جيت هاب
+      - name: Generate Android Folder
+        run: flutter create .
+
       - name: Get Dependencies
         run: flutter pub get
 
