@@ -4,7 +4,7 @@ on:
   push:
     branches:
       - main
-  workflow_dispatch: # يتيح لك تشغيل البناء يدوياً بأي وقت
+  workflow_dispatch:
 
 jobs:
   build:
@@ -12,10 +12,10 @@ jobs:
 
     steps:
       - name: Checkout Repository
-        uses: actions/checkout@v4 # حدثنا النسخة هنا أيضاً للأمان
+        uses: actions/checkout@v4
 
       - name: Set up Java
-        uses: actions/setup-java@v4 # حدثنا النسخة هنا أيضاً
+        uses: actions/setup-java@v4
         with:
           distribution: 'zulu'
           java-version: '17'
@@ -26,14 +26,19 @@ jobs:
           flutter-version: '3.22.0'
           channel: 'stable'
 
+      # التعديل هنا: نقوم بتحديد المجلد الفرعي (sos) الذي يحتوي على ملف pubspec.yaml
       - name: Get Dependencies
         run: flutter pub get
+        working-directory: ./sos # إذا كان اسم المجلد مختلفاً، استبدل sos باسم مجلدك
 
+      # التعديل هنا أيضاً ليتم البناء داخل المجلد الفرعي
       - name: Build APK
         run: flutter build apk --release
+        working-directory: ./sos 
 
       - name: Upload APK Artifact
-        uses: actions/upload-artifact@v4 # التعديل الذهبي لحل المشكلة هنا!
+        uses: actions/upload-artifact@v4
         with:
           name: release-apk
-          path: build/app/outputs/flutter-apk/app-release.apk
+          # تذكر تعديل المسار هنا ليتضمن اسم المجلد الفرعي أيضاً
+          path: sos/build/app/outputs/flutter-apk/app-release.apk
