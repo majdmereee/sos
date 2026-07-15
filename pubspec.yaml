@@ -1,0 +1,23 @@
+name: sos
+description: "A new Flutter project for Instant SOS."
+publish_to: 'none'
+version: 1.0.0+1
+
+environment:
+  sdk: '>=3.2.0 <4.0.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+  # المكتبات التي استخدمناها في الكود
+  flutter_accessibility_service: ^1.8.1
+  pusher_channels_flutter: ^2.2.0
+  http: ^1.2.1
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^3.0.0
+
+flutter:
+  uses-material-design: true
