@@ -27,8 +27,8 @@ jobs:
           flutter-version: '3.22.0'
           channel: 'stable'
 
-      # هذه هي الخطوة الجديدة: ستقوم بتوليد ملفات الأندرويد الناقصة تلقائياً
-      - name: Repair and Generate Android Project
+      # هذا الأمر سيكمل بناء مجلد الأندرويد من حول ملفاتك التي أنشأتها
+      - name: Generate Android Project
         run: flutter create --platforms android .
 
       - name: Install Dependencies
