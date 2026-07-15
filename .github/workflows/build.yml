@@ -26,18 +26,25 @@ jobs:
           flutter-version: '3.22.0'
           channel: 'stable'
 
-      # هذا هو السطر السحري الذي سيولد مجلد الأندرويد تلقائياً على سيرفر جيت هاب
-      - name: Generate Android Folder
-        run: flutter create .
-
-      - name: Get Dependencies
-        run: flutter pub get
-
-      - name: Build APK
-        run: flutter build apk --release
+      - name: The Magic Script (Auto-Generate & Build)
+        run: |
+          # 1. إنشاء مشروع فلاتر جديد ونظيف يحتوي على مجلد الأندرويد
+          flutter create temp_app
+          
+          # 2. البحث عن ملفاتك ونسخها للمشروع الجديد مهما كان مكانها
+          find . -type d -name "temp_app" -prune -o -name "main.dart" -exec cp {} temp_app/lib/ \;
+          find . -type d -name "temp_app" -prune -o -name "pubspec.yaml" -exec cp {} temp_app/ \;
+          
+          # 3. الدخول للمشروع وتثبيت المكتبات والبناء
+          cd temp_app
+          flutter pub get
+          flutter build apk --release
+          
+          # 4. سحب ملف الـ APK النهائي للخارج لتسهيل تحميله
+          cp build/app/outputs/flutter-apk/app-release.apk ../app-release.apk
 
       - name: Upload APK Artifact
         uses: actions/upload-artifact@v4
         with:
           name: release-apk
-          path: build/app/outputs/flutter-apk/app-release.apk
+          path: app-release.apk
