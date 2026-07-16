@@ -1,5 +1,5 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.sos"> <!-- تأكد من اسم الحزمة الخاص بك -->
+    package="com.example.sos"> <!-- تأكد من استبدال هذا باسم الحزمة الخاص بتطبيقك إذا كان مختلفاً -->
 
     <!-- الأذونات المطلوبة -->
     <uses-permission android:name="android.permission.INTERNET" />
@@ -17,6 +17,11 @@
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         
+        <!-- هذا هو السطر الذي يحل المشكلة ويخبر المترجم باستخدام الإصدار الحديث v2 -->
+        <meta-data
+            android:name="flutterEmbedding"
+            android:value="2" />
+
         <activity
             android:name=".MainActivity"
             android:exported="true"
