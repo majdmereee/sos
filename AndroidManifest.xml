@@ -1,0 +1,43 @@
+<!-- أذونات الموقع -->
+<uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+<uses-permission android:name="android.permission.ACCESS_BACKGROUND_LOCATION" />
+<!-- أذونات تجاوز الصامت وإضاءة الشاشة -->
+<uses-permission android:name="android.permission.ACCESS_NOTIFICATION_POLICY" />
+<uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS" />
+<uses-permission android:name="android.permission.WAKE_LOCK" />
+<uses-permission android:name="android.permission.USE_FULL_SCREEN_INTENT" />
+<uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
+<!-- إذن الإنترنت -->
+<uses-permission android:name="android.permission.INTERNET" />
+
+<application ...>
+    
+    <!-- خدمة التقاط زر الصوت -->
+    <service
+        android:name=".VolumeButtonService"
+        android:permission="android.permission.BIND_ACCESSIBILITY_SERVICE"
+        android:exported="true">
+        <intent-filter>
+            <action android:name="android.accessibilityservice.AccessibilityService" />
+        </intent-filter>
+        <meta-data
+            android:name="android.accessibilityservice"
+            android:resource="@xml/accessibility_service_config" />
+    </service>
+
+    <!-- خدمة استقبال إشعارات الطوارئ عبر فايربيس -->
+    <service
+        android:name=".EmergencyMessagingService"
+        android:exported="true">
+        <intent-filter>
+            <action android:name="com.google.firebase.MESSAGING_EVENT" />
+        </intent-filter>
+    </service>
+
+    <!-- واجهة الإنذار التي ستظهر فوق كل شيء -->
+    <activity
+        android:name=".EmergencyAlertActivity"
+        android:showOnLockScreen="true"
+        android:launchMode="singleTask"
+        android:excludeFromRecents="true" />
+</application>
