@@ -13,6 +13,7 @@ dependencies:
   pusher_channels_flutter: ^2.2.0
   http: ^1.2.1
   shared_preferences: ^2.2.3
+  crypto: ^3.0.3 # أضفنا هذه المكتبة لتعمل كبديل للسيرفر
 
 dev_dependencies:
   flutter_test:
